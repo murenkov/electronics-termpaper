@@ -1,0 +1,63 @@
+\section{Расчёт прецизионного усилителя}
+1. Вначале найдём максимальную амплитуду сигнала на выходе ПУ:
+\[
+    U_{m\text{ вых. max}} = K_0 U_{m\text{ вх. max}} = 1000 \cdot 1 \cdot 10^{-3} = 1 \text{ В}.
+\]
+Далее находим
+\[
+    U_\text{вых. max} \ge 1.2 \cdot 1 = 1.2 \text{ В}.
+\]
+Такое значение $U_\text{вых. max}$ позволяет выбрать величину напряжения источника питания $U_п \ge U_\text{вых. max} + 2 \text{ В} = 3 \text{ В}$.
+Поскольку требования к потребляемой мощности не слишком жёсткие, выберем рекомендуемое для большинства ОУ номинальное напряжение источника питания $U_п = \pm 5 \text{ В}$.
+
+Рассчитаем $v_{u\text{ вых}}$:
+\[
+    v_{u\text{ вых}} \ge 2 \pi f_в U_{m\text{ вых. max}} = 2 \pi \cdot 100 \cdot 10^3 \cdot 1 \approx 0.63 \text{ В/мкс}.
+\]
+Также найдём, что $R_\text{н max} \le R_н = 2 \text{ кОм}$.
+
+2. С целью предварительного определения $n$ и $\delta K_R$ примем типовые значения параметров ОУ $K = 5 \cdot 10^4$ и $\frac{\delta K}{\Delta T} = 1 \text{ \%/\textdegree C}$.
+Тогда в заданном интервале температур
+\[
+    \delta K = \frac{1}{2} \cdot \left(\frac{\delta K}{\Delta T}\right) \cdot \Delta T_\text{max} = \frac{1}{2} \cdot 1 \cdot 70 = 35 \text{ \%}.
+    % \degree
+\]
+
+С помощью формулы $\left(\frac{\delta K_0}{n} - \frac{\delta K}{K} \root n \of {K_0}\right) \ge |\delta K_R|$ рассчитаем для различных значений $n$, начиная с единицы, величину $\delta K_R$:
+\begin{equation}
+    \begin{aligned}
+        n = 1, |\delta K_R| = \frac{1}{1} - \frac{35}{50 \cdot 10^3} \cdot \root 1 \of {1000} \approx 0.30 \text{ \%}; \\
+        n = 2, |\delta K_R| = \frac{1}{2} - \frac{35}{50 \cdot 10^3} \cdot \root 2 \of {1000} \approx 0.48 \text{ \%}; \\
+        n = 3, |\delta K_R| = \frac{1}{3} - \frac{35}{50 \cdot 10^3} \cdot \root 3 \of {1000} \approx 0.33 \text{ \%}.
+    \end{aligned}
+\end{equation}
+
+При $n \ge 1$ условия выполняются, причём в случае $n = 2$ получается наименее жёсткий допуск на величину $\delta K_R$, поэтому остановимся на значении $n = 2$.
+
+3. В соответствии с формулой $f_1 \ge \frac{f_в \root n \of {K_0}}{\sqrt{\root n \of {M_в^2} - 1}}$ рассчитаем:
+\[
+    f_1 \ge \frac{100 \cdot 10^3 \cdot \sqrt{1000}}{\sqrt{\sqrt{{(10^{0.3/20})}^2} - 1}} \approx 16.869 \text{ МГц}.
+\]
+
+По формуле $I_{пот} \le \frac{1}{2n} \left(\frac{P_{пот}}{U_в} - \frac{U_{m\text{ вых. max}}}{\pi R_н}\right)$ найдём
+\[
+    I_{пот} \le \frac{1}{2 \cdot 2} \cdot \left(\frac{1}{5} - \frac{1}{2000\pi}\right) \approx 50 \text{ мА}.
+\]
+
+4. Согласно справочным данным выберем ОУ типа К1407УД1 c параметрами:
+\begin{itemize}
+    \item $K = 10000$
+    \item $v_u = 10 \text{ В/мкс}$
+    \item $f_1 = 20 \text{ МГц}$
+    \item $U_\text{вых. max} = 3 \text{ В}$
+    \item $I_{пот} = 8 \text{ мА}$
+    \item $\delta K = 35 \text{ \%}$ при $\Delta T_\text{max} = 70 \text{ \textdegree C} $
+\end{itemize}
+
+5. Уточним требования к $\delta K_R$.
+Подставив в формулу $\left(\frac{\delta K_0}{n} - \frac{\delta K}{K} \root n \of {K_0}\right) \ge |\delta K_R|$ значения $K = 10000$,  $\delta K = 35 \text{ \%}$ и $n= 2$, найдём:
+\[
+    |\delta K_R| = \frac{1}{2} - \frac{35}{10000} \cdot \sqrt{1000} \approx 0.39 \text{ \%}; \\
+\]
+
+Таким образом, ПУ может быть выполнен на ОУ типа К1407УД1, число каскадов $n = 2$, $|\delta K_R| \le 0.39 \text{ \%}$.
