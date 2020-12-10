@@ -6,13 +6,13 @@
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.4\linewidth]{opamp-topology.pdf}
-    \caption{Схема включения К154УД4 (HA2520)}
+    \caption{Схема включения К154УД4 (HA2520).}
     \label{fig:opamp-topology}
 \end{figure}
 
 \begin{table}[!ht]
     \centering
-    \caption{Назначение выводов К154УД4 (HA2520)}
+    \caption{Назначение выводов К154УД4 (HA2520).}
     \label{tab:opamp-topology}
     \begin{tabular}{|c|c|}
         \hline
@@ -112,9 +112,8 @@
 
 Тогда суммарная погрешность составляет
 \[
-    \epsilon
-    = \epsilon_K + \epsilon_R + \epsilon_{TK} + \epsilon_{RT}
-    % = (0.036 + 0.1 + 0.315 + 0.1050)~\%
+    \epsilon \\
+    = \epsilon_K + \epsilon_R + \epsilon_{TK} + \epsilon_{RT} \\
     = 1.501~\%.
 \]
 
@@ -141,11 +140,6 @@
 \subsection{Расчёт разделительных конденсаторов}
 Ёмкость $C$ разделительного конденсатора следует выбирать, исходя из ограничений на коэффициент частотных искажений, появляющихся на низких частотах.
 
-% \[
-%     M_1
-%     = \sqrt{1 + \left(\frac{1}{2 \pi \tau_н f_н}\right)^2},
-% \]
-% где $\tau_н = (R_{вых.пр} + R_{вх.посл}) \cdot C$ "--- постоянная времени RC-цепи, образованной разделительным конденсатором, входным сопротивлем предыдущего каскада $R_{вых.пр}$ и входным сопротивлением последующего каскада $R_{вх.посл}$.
 \[
     M_н
     = 10^\frac{M_{н}~[Дб]}{20}
@@ -161,12 +155,6 @@
 \]
 
 \subsection{Устранение паразитной положительной обратной связи через источник питания}
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{alone-amplifier}
-%     \caption{Принципиальная схема каскада проектируемого усилителя}
-%     \label{alone-amplifier}
-% \end{figure}
 За счёт источника питания может появляться паразитная положительная обратная связь (ППОС), которая будет плохо влиять на режим работы операционных усилителей.
 Чтобы нейтрализовать влияние ППОС через источник питания на выводы операционного усилителя можно поставить RC-фильтры.
 
@@ -182,60 +170,57 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{amplifier.pdf}
-    \caption{Принципиальная схема проектируемого усилителя}
+    \includegraphics[width=\textwidth]{amplifier-borderless.pdf}
+    \caption{Принципиальная схема проектируемого усилителя.}
     \label{amplifier}
 \end{figure}
 
 Проведём моделирование собранной схемы (рис. \ref{fig:oscillogram-sine} и \ref{fig:oscillogram-impulse}).
 АЧХ усилителя изображён на рис. \ref{fig:frequency-response-lower} и \ref{fig:frequency-response-high}.
 
-% \begin{figure}[!h]
-%     \centering
-%     \begin{subfigure}[b]
-%         \centering
-%         \includegraphics[width=0.4\textwidth]{oscillogram-sine}
-%         \caption{}
-%         % \caption{Моделирование при гармоническом сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
-%         % \label{fig:oscillogram-sine}
-%     \end{subfigure}
-%     \begin{subfigure}[b]
-%         \centering
-%         \includegraphics[width=0.4\textwidth]{oscillogram-impulse}
-%         \caption{}
-%         % \caption{Моделирование при импульсном сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
-%         % \label{fig:oscillogram-impulse}
-%     \end{subfigure}
-%     \caption{Моделирование а) при гармоническом сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}; при б) импульсном сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
-%     \label{fig:oscillogram}
-% \end{figure}
-
-\begin{figure}[!ht]
+\begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\textwidth]{oscillogram-sine}
-    \caption{Моделирование при гармоническом сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
-    \label{fig:oscillogram-sine}
-\end{figure}
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{oscillogram-impulse}
-    \caption{Моделирование при импульсном сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
-    \label{fig:oscillogram-impulse}
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{oscillogram-sine}
+        \caption{}
+        \label{fig:oscillogram-sine}
+        % \caption{Моделирование при гармоническом сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{oscillogram-impulse}
+        \caption{}
+        \label{fig:oscillogram-impulse}
+        % \caption{Моделирование при импульсном сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел}
+    \end{subfigure}
+    \caption{Моделирование 
+        а) при гармоническом сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел; 
+        б) при импульсном сигнале: масштаб на канале A равен 5~мВ/дел; на канале B "--- 5~В/дел.
+    }
+    \label{fig:oscillogram}
 \end{figure}
 
 \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{frequency-response-lower}
-    \caption{АЧХ моделируемого усилителя, маркер на нижней частоте}
-    \label{fig:frequency-response-lower}
-\end{figure}
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{frequency-response-high}
-    \caption{АЧХ моделируемого усилителя, маркер на верхней частоте}
-    \label{fig:frequency-response-high}
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{frequency-response-lower}
+        \caption{}
+        \label{fig:frequency-response-lower}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{frequency-response-high}
+        \caption{}
+        \label{fig:frequency-response-high}
+    \end{subfigure}
+    \caption{АЧХ моделируемого усилителя: 
+        a) маркер на нижней частоте, усиление равно $59.586~дБ$;
+        б) маркер на верхней частоте, усиление равно $59.747~дБ$.
+    }
+    \label{fig:frequency-response}
 \end{figure}
 
 Из рис. \ref{fig:frequency-response-lower} и \ref{fig:frequency-response-high} видно, что реализованная схема прецизионного усилителя обеспечивает стабильное усиление на заданном диапазоне частот от 100~Гц до 100~кГц.
